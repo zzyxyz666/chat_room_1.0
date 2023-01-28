@@ -1,5 +1,5 @@
 # chat_room_1.0
-基于win32api，使用c语言开发的聊天室（Chat room developed with c language based on win32 api）
+基于win32api，使用c语言开发的聊天室（Chat room developed with c language based on win32 api）支持多人聊天，修改姓名。
 
 内部使用自己编写的库函数（极其不标准，主要为了方便本人使用Dev-Cpp进行单文件编写）该库参考了，翁凯老师在中国大学mooc c语言程序设计进阶课程中提供的ACLlib库（github地址：https://github.com/wengkai/ACLLib/）
 
