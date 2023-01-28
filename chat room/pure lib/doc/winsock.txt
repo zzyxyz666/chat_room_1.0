@@ -1,0 +1,43 @@
+/*
+***注意该代码暂时只使用TCP协议连接，不使用UTP，且使用IPV4地址，不支持IPV6
+该代码提供C语言基于TCP/IP协议，使用windows系统函数库，实现网络通信
+***注意该代码用于纯C语言，暂不用于C++
+***注意该代码用于windows系统下，不具有移植性
+***注意该代码需要“wsock32.lib”函数库
+		若使用Dev-C++可以在连接器添加“-lwsock32”
+*/
+1.创建套接字函数：
+RETURN InitSock(int TYPE, SOCKET *s, const char* P_SERVER_IP, int PORT);
+	（1）TYPE	:该参数为SERVER表示使用服务器，CLIENT表示使用客户端
+					//SERVER，CLIENT为英文大写
+	（2）*s		:该参数为使用SOCKET，需要自己初始化SOCKET
+	（3）P_SERVER_IP	：该参数为要连接（监听）的IP地址
+	（4）PORT	：该参数为要连接（监听）的IP地址的端口
+	//必须和CloseSock函数配套使用
+
+1.1.RETURN AcceptSock(SOCKET *pServer, SOCKET *pClient);
+	***该函数仅限于服务器***
+	该函数第一个参数为服务器SOCKET套接字，第二个参数为客户端SOCKET套接字
+	//第一个参数需由InitSock函数生成服务器套接字，第二个参数接受客户端连接后产生的套接字
+	//利用客户端套接字实现在服务器对客户端的操作
+
+2.关闭套接字函数：
+RETURN CloseSock(SOCKET *s);
+	（1）*s		：该参数应该和InitSock函数第二个参数相同，用于关闭套接字
+	//该函数为”扫尾“函数，应当放在函数末尾，或者通讯末尾
+
+3.发送和接收函数：
+RETURN SendSock(SOCKET *s,void* pbuffer);
+RETURN RecvSock(SOCKET *s,void* pbuffer, int BufferLen);
+	（1）*s		:参数表示要接受，或发送的套接字
+				//该套接字必须由InitSock函数使用过
+	（2）pbuffer:参数为指向传输数据的指针,传输的数据最好不能大于1024字节
+				//推荐自定义大小传输，保证传输大小的稳定
+	（3）BufferLen：接受数据的最大长度
+
+
+/*
+RETURN Connect(SOCKET *s, SOCKADDR_IN *addr);
+RETURN BindListen(SOCKET *s, SOCKADDR_IN *addr);
+该函数为内部函数
+*/

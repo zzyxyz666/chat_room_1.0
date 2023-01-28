@@ -1,0 +1,26 @@
+/*
+本代码的分级解释请看该目录下windoc文件夹，里面有分级细致讲解便于复杂操作
+本文档只进行基本操作解析
+所有参数只要涉及全大写参数即参数可能可以使用“|”符号连接使其具有多个参数的效果
+*/
+0.入口函数
+	***若使用此文档将更改入口函数，由c语言标准的main更改为winmain（注意全部小写）***
+
+1.初始化窗口函数:
+HWND initWindow(int flag, INITWIN *pInitWin);
+	（1）第一个参数将有且仅有以下值（值全部大写）
+	WINFLAG_DEFAULT,该参数使用后第二个参数作废，但仍需给出第二个参数供函数使用
+	WINFLAG_STYLE,	该参数有以下初值（值全部大写），该参数效果介于其他两参数
+{
+SY_POSITION			使用此参数后可以设定具体窗口出现位置，可设定X，Y
+SY_WINSIZE			使用此参数后可以设定具体窗口出现大小，可设定Width,Height
+SY_COORDINATE		使用此参数后可以设定具体窗口出现大小和位置，等效于SY_POSITION | SY_WINSIZE
+SY_NAME				使用此参数后可以设定窗口名字
+//从此以下参数将有且仅有一个参数可选（必选）
+SY_DEFAULT			使用此参数后若无其他参数则与第一个参数为WINFLAG_DEFAULT等价
+SY_INVISIABLE		使用此参数后窗口将不可见，只能由任务管理器强制关闭，或有其他关闭手段
+}
+	WINFLAG_MASK,	该参数使用后将自定义值，具体见windoc文件夹下initwindow.txt
+
+	（2）第二个参数仅当第一个参数为WINFLAG_STYLE或WINFLAG_MASK才部分可用
+	

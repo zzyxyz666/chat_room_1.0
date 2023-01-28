@@ -1,0 +1,14 @@
+/*
+1.该函数原理是利用Windows注册表内的开机自启动，项添加实现，故需要windows平台。
+
+2.该函数仅提供C语言接口使用windows内置系统函数实现功能
+*/
+
+int selfStarting(const char * name);
+使用该函数可以将该程序设置为开机自启动，该函数的参数为任意名（不与系统名重复）。
+
+/*
+该函数不会删去注册表内的值，可能造成注册表冗余，若关闭开机自启动则需打开注册表，找到以下路径
+计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+后关闭其相应键值对即可。
+*/
